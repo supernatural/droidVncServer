@@ -42,9 +42,10 @@ LOCAL_CFLAGS  +=  -Wall \
 									-DLIBVNCSERVER_WITH_WEBSOCKETS \
 									-DLIBVNCSERVER_HAVE_LIBPNG \
 									-DLIBVNCSERVER_HAVE_ZLIB \
-									-DLIBVNCSERVER_HAVE_LIBJPEG
+									-DLIBVNCSERVER_HAVE_LIBJPEG \
+									-pie -fPIE
 
-LOCAL_LDLIBS +=  -llog -lz -ldl 
+LOCAL_LDLIBS +=  -llog -lz -ldl -pie -fPIE
 
 LOCAL_SRC_FILES += \
 									 $(LIBVNCSERVER_SRC_FILES)\

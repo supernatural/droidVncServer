@@ -31,9 +31,6 @@
             android:name="preferences"
             android:label="Preferences" >
         </activity>
-        <activity
-            android:name="com.google.ads.AdActivity"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
 
         <service android:name=".ServerManager" >
             <intent-filter>

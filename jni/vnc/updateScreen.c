@@ -45,9 +45,9 @@ void FUNCTION(void)
     b = (OUT_T*) readBufferFlinger();
 
   a = (OUT_T*)cmpbuf;
-//  memcpy(vncbuf,b,screenformat.width*screenformat.height*screenformat.bitsPerPixel/CHAR_BIT);
-//  rfbMarkRectAsModified(vncscr, 0, 0, vncscr->width, vncscr->height);
-//  return;
+  memcpy(vncbuf,b,screenformat.width*screenformat.height*screenformat.bitsPerPixel/CHAR_BIT);
+  rfbMarkRectAsModified(vncscr, 0, 0, vncscr->width, vncscr->height);
+  return;
 
   int max_x=-1,max_y=-1, min_x=99999, min_y=99999;
   int h;
