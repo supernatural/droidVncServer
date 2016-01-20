@@ -69,11 +69,14 @@ int initFB(void)
     return -1;
   }
 
-  L("line_lenght=%d xres=%d, yres=%d, xresv=%d, yresv=%d, xoffs=%d, yoffs=%d, bpp=%d\n",
+  L("line_length=%d xres=%d, yres=%d, xresv=%d, yresv=%d, xoffs=%d, yoffs=%d, bpp=%d\n",
     (int)fscrinfo.line_length,(int)scrinfo.xres, (int)scrinfo.yres,
     (int)scrinfo.xres_virtual, (int)scrinfo.yres_virtual,
     (int)scrinfo.xoffset, (int)scrinfo.yoffset,
     (int)scrinfo.bits_per_pixel);
+
+  L("fix_screen_info,xpanstep=%d, ypanstep=%d, ywrapstep=%d, line_length=%d\n",
+          fscrinfo.xpanstep, fscrinfo.ypanstep, fscrinfo.ywrapstep, fscrinfo.line_length);
 
   size_t size = scrinfo.yres_virtual;
   if (size < scrinfo.yres * 2) {
@@ -108,6 +111,7 @@ int initFB(void)
   screenformat.blueMax = scrinfo.blue.length;
   screenformat.alphaShift = scrinfo.transp.offset;
   screenformat.alphaMax = scrinfo.transp.length;
+  screenformat.line_length = fscrinfo.line_length/4;
 
   return 1;
 } 

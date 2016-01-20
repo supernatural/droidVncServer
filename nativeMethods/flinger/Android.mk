@@ -4,11 +4,10 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES = \
 									flinger.cpp
 
-#LOCAL_CFLAGS += -DPLATFORM_SDK_VERSION=$(PLATFORM_SDK_VERSION)
 
 LOCAL_C_INCLUDES +=	\
-										$(LOCAL_PATH) \
-										$(LOCAL_PATH)/..
+			$(LOCAL_PATH) \
+			$(LOCAL_PATH)/..
 
 LOCAL_PRELINK_MODULE:=false #override prelink map
 LOCAL_MODULE:= libdvnc_flinger_sdk$(PLATFORM_SDK_VERSION)
@@ -25,7 +24,9 @@ else ifeq ($(PLATFORM_SDK_VERSION),15)
 LOCAL_SHARED_LIBRARIES := libgui libui libbinder libcutils
 else
 #add here more sdk versions
-LOCAL_SHARED_LIBRARIES := libgui libui libbinder libcutils
+LOCAL_SHARED_LIBRARIES := libgui libui libbinder libcutils libutils
 endif
+
+LOCAL_CFLAGS += -Wall -Werror -Wunused -Wunreachable-code
 
 include $(BUILD_SHARED_LIBRARY)

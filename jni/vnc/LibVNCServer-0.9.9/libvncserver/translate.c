@@ -306,7 +306,7 @@ rfbSetTranslateFunction(rfbClientPtr cl)
 
     /* truecolour -> truecolour */
 
-    if (PF_EQ(cl->format,cl->screen->serverFormat)) {
+    /*if (PF_EQ(cl->format,cl->screen->serverFormat))*/ {
 
         /* client & server the same */
 

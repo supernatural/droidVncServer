@@ -36,7 +36,7 @@ int initFlinger(void)
 
   len=ARR_LEN(compiled_sdks);
   for (i=0;i<len;i++) {
-    sprintf(lib_name, DVNC_LIB_PATH "/libdvnc_flinger_sdk%d.so",compiled_sdks[i]);
+    sprintf(lib_name, DVNC_LIB_PATH "libdvnc_flinger_sdk%d.so",compiled_sdks[i]);
 
     if (flinger_lib != NULL)
       dlclose(flinger_lib);

@@ -38,7 +38,7 @@ int initGralloc(void)
 
   len=ARR_LEN(compiled_sdks);
   for (i=0;i<len;i++) {
-    sprintf(lib_name, DVNC_LIB_PATH "/libdvnc_gralloc_sdk%d.so",compiled_sdks[i]); 
+    sprintf(lib_name, DVNC_LIB_PATH "libdvnc_gralloc_sdk%d.so",compiled_sdks[i]); 
     L("Loading lib: %s\n",lib_name);
     
     if (gralloc_lib) //remove previous instance

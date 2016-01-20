@@ -25,6 +25,7 @@ typedef struct _screenFormat
   uint32_t size;
 
   uint32_t pad;
+  uint32_t line_length;
 
 } screenFormat;
 

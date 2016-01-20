@@ -426,10 +426,15 @@ int main(int argc, char **argv)
     L("	width:  %d\n", (int)screenformat.width);
     L("	height: %d\n", (int)screenformat.height);
     L("	bpp:    %d\n", (int)screenformat.bitsPerPixel);
+    L(" line_length: %d\n", (int)screenformat.line_length);
     L("	port:   %d\n", (int)VNC_PORT);
 
+    if (screenformat.line_length > screenformat.width) {
+        L("Using stride instead of width\n");
+        screenformat.width = screenformat.line_length;
+    }
 
-    L("Colourmap_rgba=%d:%d:%d:%d    lenght=%d:%d:%d:%d\n", screenformat.redShift, screenformat.greenShift, screenformat.blueShift,screenformat.alphaShift,
+    L("Colourmap_rgba=%d:%d:%d:%d    length=%d:%d:%d:%d\n", screenformat.redShift, screenformat.greenShift, screenformat.blueShift,screenformat.alphaShift,
       screenformat.redMax,screenformat.greenMax,screenformat.blueMax,screenformat.alphaMax);  
 
     initVncServer(argc, argv);

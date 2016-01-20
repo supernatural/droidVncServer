@@ -31,5 +31,3 @@ To build:
   $ cd <droid-vnc-folder>
   $ ./updateExecsAndLibs.sh
 
--------------- Compile GUI------- -------------------
-Import using eclipse as a regular Android project

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
 #define FUNCTION CONCAT2E(update_screen_,OUT)
 
 void FUNCTION(void)
-{  
+{
   int i,j,r;
   int offset=0,pixelToVirtual;
   OUT_T* a;
@@ -45,9 +45,24 @@ void FUNCTION(void)
     b = (OUT_T*) readBufferFlinger();
 
   a = (OUT_T*)cmpbuf;
-  memcpy(vncbuf,b,screenformat.width*screenformat.height*screenformat.bitsPerPixel/CHAR_BIT);
+
+  //L("screenformat.line_length=%d\n", screenformat.line_length);
+  /*if (screenformat.line_length > 0) {
+      for (j=0; j < vncscr->height; j++) {
+          for (i=0; i < vncscr->width; i++) {
+             offset = j * vncscr->width;
+             pixelToVirtual = j * screenformat.line_length + i;
+             //L("copying %d to %d\n", (pixelToVirtual), (i+offset));
+             vncbuf[i + offset] = b[pixelToVirtual];
+          }
+      }
+  } else*/ {
+      vncscr->frameBuffer = (char*)b;
+      //memcpy(vncbuf,b,screenformat.width*screenformat.height*screenformat.bitsPerPixel/CHAR_BIT);
+  }
   rfbMarkRectAsModified(vncscr, 0, 0, vncscr->width, vncscr->height);
   return;
+
 
   int max_x=-1,max_y=-1, min_x=99999, min_y=99999;
   int h;
@@ -88,7 +103,7 @@ void FUNCTION(void)
         if (method==FRAMEBUFFER)
         pixelToVirtual = PIXEL_TO_VIRTUALPIXEL_FB(i,j);
         else
-        pixelToVirtual = PIXEL_TO_VIRTUALPIXEL(i,j);		  
+        pixelToVirtual = PIXEL_TO_VIRTUALPIXEL(i,j);
 
         if (a[(vncscr->width - 1 - j + offset)] != b[pixelToVirtual])
         {
